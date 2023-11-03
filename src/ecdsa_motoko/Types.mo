@@ -30,6 +30,7 @@ module Types {
         amount : Text;
         transactionHash : Text;
         contractAddress : Text;
+        apiKey : Text;
     };
 
     public type TransactionReceipt = {

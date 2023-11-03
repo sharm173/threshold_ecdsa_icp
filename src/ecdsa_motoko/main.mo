@@ -119,8 +119,8 @@ actor {
 
   };
 
-  private func getTransactionReceipt(transactionHash : Text) : async ?Types.TransactionReceipt {
-    let url = "https://eth-sepolia.g.alchemy.com/v2/41sO1jh88HCM_be7V1BTLDIyz3k_kzuP";
+  private func getTransactionReceipt(transactionHash : Text, apiKey : Text) : async ?Types.TransactionReceipt {
+    let url = "https://eth-sepolia.g.alchemy.com/v2/" # apiKey;
     let host : Text = "eth-sepolia.g.alchemy.com";
 
     // let idempotency_key : Text = generateUUID();
@@ -197,7 +197,7 @@ actor {
     };
 
     //Fetch transaction receipt
-    let transactionReceipt : ?Types.TransactionReceipt = await getTransactionReceipt(deposit.transactionHash);
+    let transactionReceipt : ?Types.TransactionReceipt = await getTransactionReceipt(deposit.transactionHash, deposit.apiKey);
 
     switch (transactionReceipt) {
       case null { error := error # "\n Transaction Receipt not found" };
